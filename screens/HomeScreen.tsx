@@ -23,6 +23,7 @@ const heroImg = require('../assets/hero-farm.jpg');
 const jamImg = require('../assets/strawberry-jam.jpg');
 const whatsappIcon = require('../assets/whatsapp-icon.jpg');
 const instagramIcon = require('../assets/instagram-icon.jpg');
+const strawberryImg = require('../assets/strawberry.png');
 
 const TOTAL_CARDS = 4;
 
@@ -79,14 +80,14 @@ const ImageCarousel = ({ containerWidth }: { containerWidth: number }) => {
         showsHorizontalScrollIndicator={false}
         decelerationRate="fast"
         onMomentumScrollEnd={onSnap}
-        style={{ borderRadius: 16, height: 210 }}
+        style={{ borderRadius: 16, height: 260 }}
         contentContainerStyle={{ width: imgW * images.length }}
       >
         {images.map((src, i) => (
           <Image
             key={i}
             source={src}
-            style={{ width: imgW, height: 210, borderRadius: 16 }}
+            style={{ width: imgW, height: 260, borderRadius: 16 }}
             resizeMode="cover"
           />
         ))}
@@ -158,49 +159,49 @@ export default function HomeScreen({ navigation }: Props) {
             paddingHorizontal: 32, paddingTop: insets.top }]}>
             <Image
               source={logo}
-              style={{ width: Math.min(320, colW * 0.82), height: 130 }}
+              style={{ width: Math.min(colW * 0.98, colW - 8), height: 360 }}
               resizeMode="contain"
             />
-            <ScrollHint text="Scroll Down" />
+            <ScrollHint text="Scroll Down" color="rgba(80,80,75,0.75)" />
           </View>
 
           {/* ══ CARD 2 ─ Our Strawberries ══════════════════════════ */}
           <View style={[sty.card, { height: SCREEN_H }]}>
-            <View style={{ flex: 1, paddingHorizontal: 24, paddingTop: insets.top + 56, paddingBottom: 32, overflow: 'hidden' }}>
+            <View style={{ flex: 1, paddingHorizontal: 24, paddingTop: insets.top + 44, paddingBottom: 24, overflow: 'hidden' }}>
 
               {/* Eyebrow */}
-              <Text style={{ textAlign: 'center', marginBottom: 4, fontSize: 11,
+              <Text style={{ textAlign: 'center', marginBottom: 8, fontSize: 14,
                 color: C.amber, letterSpacing: 3.1, textTransform: 'uppercase',
                 fontWeight: '700', fontFamily: SANS }}>
-                Our Story
+                Strawberries
               </Text>
 
               {/* Heading */}
-              <Text style={{ textAlign: 'center', marginBottom: 12, fontSize: 22,
+              <Text style={{ textAlign: 'center', marginBottom: 18, fontSize: 28,
                 fontWeight: '700', color: C.dark, fontFamily: SERIF }}>
-                Our Strawberries
+                Our Story
               </Text>
 
               {/* Pull quote */}
-              <View style={{ marginBottom: 12, paddingVertical: 10, paddingRight: 12,
-                paddingLeft: 12, borderLeftWidth: 3, borderLeftColor: C.amber,
+              <View style={{ marginBottom: 18, paddingVertical: 14, paddingRight: 14,
+                paddingLeft: 14, borderLeftWidth: 3, borderLeftColor: C.amber,
                 backgroundColor: 'rgba(193,140,93,0.05)', borderRadius: 10,
                 borderTopRightRadius: 10, borderBottomRightRadius: 10 }}>
                 <Text style={{ fontStyle: 'italic', fontWeight: '600', color: C.dark,
-                  lineHeight: 18, fontSize: 12, fontFamily: SERIF }}>
+                  lineHeight: 22, fontSize: 15, fontFamily: SERIF }}>
                   In the quiet hills of Kodaikanal, The Berry Patch began with a simple
                   idea — to grow strawberries the right way.
                 </Text>
               </View>
 
               {/* Body */}
-              <Text style={{ fontSize: 12, color: C.muted, lineHeight: 20,
-                marginBottom: 8, fontFamily: SERIF }}>
+              <Text style={{ fontSize: 14, color: C.muted, lineHeight: 23,
+                marginBottom: 14, fontFamily: SERIF }}>
                 We work with local farmers — no shortcuts, no chemicals. Grown organically
                 in Kodaikanal's cool hills, just as nature intended.
               </Text>
-              <Text style={{ fontSize: 12, color: C.muted, lineHeight: 20,
-                marginBottom: 12, fontFamily: SERIF }}>
+              <Text style={{ fontSize: 14, color: C.muted, lineHeight: 23,
+                marginBottom: 18, fontFamily: SERIF }}>
                 We chose the{' '}
                 <Text style={{ color: C.dark, fontWeight: '700' }}>Camarosa variety</Text>
                 {' '}— handpicked at peak ripeness and lab-tested by{' '}
@@ -211,136 +212,130 @@ export default function HomeScreen({ navigation }: Props) {
               {/* Carousel */}
               <ImageCarousel containerWidth={innerW} />
 
-              {/* Pills */}
-              <View style={{ flexDirection: 'row', flexWrap: 'wrap',
-                justifyContent: 'center', gap: 8, marginTop: 12 }}>
-                {[
-                  { label: '🌿 Organically Grown', color: C.green, bg: 'rgba(74,124,89,0.08)',  border: 'rgba(74,124,89,0.22)' },
-                  { label: '✓ Pesticide-Free',      color: C.red,   bg: C.bg,                    border: C.border               },
-                  { label: '🍓 Farm Fresh',          color: C.amber, bg: 'rgba(193,140,93,0.08)', border: 'rgba(193,140,93,0.22)' },
-                ].map(({ label, color, bg, border }) => (
-                  <View key={label} style={{ backgroundColor: bg, borderRadius: 99,
-                    paddingHorizontal: 11, paddingVertical: 4,
-                    borderWidth: 1, borderColor: border }}>
-                    <Text style={{ fontSize: 11, color, fontWeight: '700', fontFamily: SANS }}>
-                      {label}
-                    </Text>
-                  </View>
-                ))}
-              </View>
-
               {/* CTA: Our Process */}
               <TouchableOpacity
                 onPress={() => navigation.navigate('Process')}
                 style={{ flexDirection: 'row', alignItems: 'center', justifyContent: 'center',
-                  gap: 8, width: '100%', marginTop: 16, backgroundColor: C.red,
+                  gap: 8, width: '100%', marginTop: 22, backgroundColor: C.red,
                   borderRadius: 14, paddingVertical: 14,
                   shadowColor: C.red, shadowOffset: { width: 0, height: 6 },
                   shadowOpacity: 0.38, shadowRadius: 10, elevation: 6 }}
                 activeOpacity={0.88}
               >
-                <Text style={{ color: 'white', fontSize: 13, fontWeight: '700',
+                <Text style={{ color: 'white', fontSize: 16, fontWeight: '700',
                   letterSpacing: 0.6, fontFamily: SANS }}>
                   Our Process
                 </Text>
-                <Text style={{ color: 'white', fontSize: 15 }}>→</Text>
+                <Text style={{ color: 'white', fontSize: 17 }}>→</Text>
               </TouchableOpacity>
             </View>
             <ScrollHint />
           </View>
 
-          {/* ══ CARD 3 ─ Strawberry Jam ════════════════════════════ */}
-          <View style={[sty.card, { height: SCREEN_H, justifyContent: 'center',
-            alignItems: 'center', paddingHorizontal: 32 }]}>
-            <View style={{ backgroundColor: 'rgba(193,140,93,0.10)', borderRadius: 99,
-              paddingHorizontal: 16, paddingVertical: 6,
-              borderWidth: 1, borderColor: 'rgba(193,140,93,0.3)', marginBottom: 20 }}>
-              <Text style={{ fontSize: 11, color: C.amber, letterSpacing: 3,
-                textTransform: 'uppercase', fontWeight: '600', fontFamily: SANS }}>
-                Coming Soon
+          {/* ══ CARD 3 ─ Strawberry Preserve ══════════════════════ */}
+          <View style={[sty.card, { height: SCREEN_H, alignItems: 'center',
+            paddingHorizontal: 32 }]}>
+
+            {/* Coming Soon badge — fixed at top */}
+            <View style={{ position: 'absolute', top: 72, alignItems: 'center', zIndex: 10 }}>
+              <View style={{ backgroundColor: C.red, borderRadius: 99,
+                paddingHorizontal: 24, paddingVertical: 10,
+                shadowColor: C.red, shadowOffset: { width: 0, height: 4 },
+                shadowOpacity: 0.45, shadowRadius: 8, elevation: 5 }}>
+                <Text style={{ fontSize: 17, color: '#fff', letterSpacing: 3.5,
+                  textTransform: 'uppercase', fontWeight: '800', fontFamily: SANS }}>
+                  Coming Soon
+                </Text>
+              </View>
+            </View>
+
+            {/* Image + content grouped in centre */}
+            <View style={{ flex: 1, justifyContent: 'center', alignItems: 'center', gap: 10 }}>
+              <Image
+                source={strawberryImg}
+                style={{ width: colW * 0.75, height: colW * 0.60 }}
+                resizeMode="contain"
+              />
+              <Text style={{ textAlign: 'center', fontSize: 58, fontWeight: '900',
+                color: C.dark, lineHeight: 66, fontFamily: SERIF }}>
+                Strawberry{'\n'}Preserve
+              </Text>
+              <Text style={{ textAlign: 'center', maxWidth: 300, fontSize: 18,
+                color: C.muted, lineHeight: 30, fontFamily: SERIF }}>
+                Small-batch, handmade preserves from our organic harvest.
+                No preservatives. Pure fruit.
               </Text>
             </View>
-            <Text style={{ textAlign: 'center', fontSize: 36, fontWeight: '900',
-              color: C.dark, lineHeight: 40, marginBottom: 16, fontFamily: SERIF }}>
-              Strawberry{'\n'}Jam
-            </Text>
-            <Text style={{ textAlign: 'center', maxWidth: 240, fontSize: 13,
-              color: C.muted, lineHeight: 22, fontFamily: SERIF }}>
-              Small-batch, handmade preserves from our organic harvest.
-              No preservatives. Pure fruit.
-            </Text>
+
             <ScrollHint />
           </View>
 
           {/* ══ CARD 4 ─ Contact ════════════════════════════════════ */}
           <View style={[sty.card, { height: SCREEN_H }]}>
-
-            {/* Top header */}
-            <View style={{ paddingTop: insets.top + 64, paddingBottom: 20, alignItems: 'center' }}>
-              <Text style={{ textAlign: 'center', fontSize: 18, fontWeight: '700',
-                color: C.dark, letterSpacing: 3.2, textTransform: 'uppercase',
-                fontFamily: SERIF }}>
+            <ScrollView
+              showsVerticalScrollIndicator={false}
+              contentContainerStyle={{ paddingHorizontal: 22,
+                paddingTop: insets.top + 32, paddingBottom: insets.bottom + 40 }}
+            >
+              {/* Page title */}
+              <Text style={{ textAlign: 'center', fontSize: 30, fontWeight: '800',
+                color: C.dark, letterSpacing: 2.5, textTransform: 'uppercase',
+                fontFamily: SERIF, marginBottom: 4 }}>
                 Get In Touch
               </Text>
-              <Text style={{ textAlign: 'center', marginTop: 4, fontSize: 12,
-                color: C.muted, fontFamily: SERIF }}>
+              <Text style={{ textAlign: 'center', fontSize: 16, color: C.muted,
+                fontFamily: SERIF, marginBottom: 22, lineHeight: 24 }}>
                 Order fresh strawberries or just say hello.
               </Text>
-            </View>
 
-            {/* Social buttons */}
-            <View style={{ flex: 1, justifyContent: 'center', alignItems: 'center',
-              paddingHorizontal: 24 }}>
-              <View style={{ gap: 12, width: '100%', maxWidth: 320 }}>
-                {([
-                  { href: 'https://wa.me/',         icon: whatsappIcon,  label: 'WhatsApp',  sub: 'Chat to order',    shadowColor: 'rgba(37,211,102,0.22)'  },
-                  { href: 'https://instagram.com/', icon: instagramIcon, label: 'Instagram', sub: 'Follow our farm',  shadowColor: 'rgba(193,50,50,0.18)'   },
-                ] as const).map(({ href, icon, label, sub, shadowColor }) => (
-                  <TouchableOpacity
-                    key={label}
-                    onPress={() => Linking.openURL(href)}
-                    activeOpacity={0.88}
-                    style={{ flexDirection: 'row', alignItems: 'center', gap: 16,
-                      padding: 14, backgroundColor: 'white',
-                      borderWidth: 1, borderColor: 'rgba(220,215,208,0.8)',
-                      borderRadius: 20,
-                      shadowColor, shadowOffset: { width: 0, height: 4 },
-                      shadowOpacity: 0.22, shadowRadius: 8, elevation: 3 }}
-                  >
-                    <Image source={icon}
-                      style={{ width: 48, height: 48, borderRadius: 24 }}
-                      resizeMode="cover" />
-                    <View>
-                      <Text style={{ fontSize: 13, fontWeight: '700', color: C.dark,
-                        fontFamily: SERIF }}>{label}</Text>
-                      <Text style={{ fontSize: 11, color: C.muted, fontFamily: SANS }}>{sub}</Text>
-                    </View>
-                  </TouchableOpacity>
-                ))}
+              {/* Social cards */}
+              {([
+                { href: 'https://wa.me/',         icon: whatsappIcon,  label: 'WhatsApp',
+                  sub: 'Chat with us to place an order', shadowColor: 'rgba(37,211,102,0.22)',
+                  accent: '#25D366' },
+                { href: 'https://instagram.com/', icon: instagramIcon, label: 'Instagram',
+                  sub: 'Follow our farm journey & updates', shadowColor: 'rgba(193,50,50,0.18)',
+                  accent: C.red },
+              ] as const).map(({ href, icon, label, sub, shadowColor, accent }) => (
+                <TouchableOpacity
+                  key={label}
+                  onPress={() => Linking.openURL(href)}
+                  activeOpacity={0.88}
+                  style={{ flexDirection: 'row', alignItems: 'center', gap: 20,
+                    padding: 26, backgroundColor: 'white', marginBottom: 18,
+                    borderWidth: 1, borderColor: 'rgba(220,215,208,0.8)',
+                    borderRadius: 24,
+                    shadowColor, shadowOffset: { width: 0, height: 6 },
+                    shadowOpacity: 0.28, shadowRadius: 14, elevation: 6 }}
+                >
+                  <Image source={icon}
+                    style={{ width: 76, height: 76, borderRadius: 38 }}
+                    resizeMode="cover" />
+                  <View style={{ flex: 1 }}>
+                    <Text style={{ fontSize: 22, fontWeight: '800', color: C.dark,
+                      fontFamily: SERIF, marginBottom: 5 }}>{label}</Text>
+                    <Text style={{ fontSize: 16, color: C.muted,
+                      fontFamily: SANS, lineHeight: 22 }}>{sub}</Text>
+                  </View>
+                  <Text style={{ fontSize: 26, color: accent }}>→</Text>
+                </TouchableOpacity>
+              ))}
+
+              {/* Logo at bottom */}
+              <View style={{ alignItems: 'center', marginTop: 32, marginBottom: 16 }}>
+                <Image source={logo} style={{ width: colW - 16, height: 280 }} resizeMode="contain" />
               </View>
-            </View>
 
-            {/* Bottom logo + copyright */}
-            <View style={{ alignItems: 'center', paddingBottom: insets.bottom + 40 }}>
-              <Image source={logo} style={{ width: 140, height: 60 }} resizeMode="contain" />
-              <Text style={{ textAlign: 'center', marginTop: 8, fontSize: 10,
-                color: C.muted, opacity: 0.45, letterSpacing: 4.8,
-                textTransform: 'uppercase', fontFamily: SANS }}>
+              {/* Copyright */}
+              <Text style={{ textAlign: 'center', fontSize: 12,
+                color: C.muted, opacity: 0.5, letterSpacing: 3.5,
+                textTransform: 'uppercase', fontFamily: SANS, marginBottom: 8 }}>
                 © The Berry Patch • Kodaikanal
               </Text>
-            </View>
+            </ScrollView>
           </View>
         </ScrollView>
 
-        {/* ── Dot indicators ── */}
-        <DotNav
-          total={TOTAL_CARDS}
-          active={activeCard}
-          color={C.red}
-          inactiveColor="rgba(217,58,76,0.25)"
-          onPress={goTo}
-          screenH={SCREEN_H}
-        />
       </View>
     </View>
   );
