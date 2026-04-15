@@ -291,11 +291,6 @@ export default function ProcessScreen({ navigation }: Props) {
                 From Farm to Table
               </Text>
 
-              <Text style={{ textAlign: 'center', fontSize: 15, color: B.muted,
-                lineHeight: 24, marginBottom: 5, fontFamily: SERIF }}>
-                From Kodaikanal's hills to your door in 24 hrs.
-              </Text>
-
               <View style={{ width: '100%', alignItems: 'center' }}>
                 {steps.map(({ emoji, accent, label, desc }, i) => (
                   <View key={label} style={{ alignItems: 'center', width: '100%' }}>
