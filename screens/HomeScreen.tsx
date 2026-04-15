@@ -18,9 +18,13 @@ import { RootStackParamList } from '../App';
 
 /* ── Assets ──────────────────────────────────────────────────────── */
 const logo = require('../assets/logo.png');
-const basketImg = require('../assets/strawberries-basket.jpg');
-const heroImg = require('../assets/hero-farm.jpg');
-const jamImg = require('../assets/strawberry-jam.jpg');
+const heroImg    = require('../assets/real-farm.jpg');
+const heroImg2   = require('../assets/real-farm2.jpg');
+const heroImg3   = require('../assets/real-farm3.jpg');
+const basketImg  = require('../assets/real-basket.jpg');
+const boxImg     = require('../assets/real-box.jpg');
+const berriesImg = require('../assets/real-berries.jpg');
+const jamImg     = require('../assets/real-bowl.jpg');
 const whatsappIcon = require('../assets/whatsapp-icon.jpg');
 const instagramIcon = require('../assets/instagram-icon.jpg');
 const strawberryImg = require('../assets/strawberry.png');
@@ -56,7 +60,7 @@ const ScrollHint = ({ text, color = 'rgba(100,100,95,0.45)' }: { text?: string; 
 
 /* ── Image carousel ──────────────────────────────────────────────── */
 const ImageCarousel = ({ containerWidth }: { containerWidth: number }) => {
-  const images = [basketImg, heroImg, jamImg];
+  const images = [heroImg, heroImg2, heroImg3, basketImg, boxImg, berriesImg, jamImg];
   const [active, setActive] = useState(0);
   const activeRef = useRef(0);
   const scrollRef = useRef<ScrollView>(null);
@@ -212,7 +216,7 @@ export default function HomeScreen({ navigation }: Props) {
                 marginBottom: 10, fontFamily: SERIF }}>
                 We chose the{' '}
                 <Text style={{ color: C.dark, fontWeight: '700' }}>Camarosa variety</Text>
-                {' '}— handpicked at peak ripeness and lab-tested by{' '}
+                {' '}— handpicked and lab-tested by{' '}
                 <Text style={{ color: C.green, fontWeight: '700' }}>ICAR-IIHR Bangalore</Text>
                 {' '}with zero pesticide residue across 130+ compounds.
               </Text>
@@ -224,9 +228,9 @@ export default function HomeScreen({ navigation }: Props) {
               <TouchableOpacity
                 onPress={() => navigation.navigate('Process')}
                 style={{ flexDirection: 'row', alignItems: 'center', justifyContent: 'center',
-                  gap: 8, width: '100%', marginTop: 12, backgroundColor: C.red,
+                  gap: 8, width: '100%', marginTop: 12, backgroundColor: C.green,
                   borderRadius: 14, paddingVertical: 14,
-                  shadowColor: C.red, shadowOffset: { width: 0, height: 6 },
+                  shadowColor: C.green, shadowOffset: { width: 0, height: 6 },
                   shadowOpacity: 0.38, shadowRadius: 10, elevation: 6 }}
                 activeOpacity={0.88}
               >
@@ -285,7 +289,7 @@ export default function HomeScreen({ navigation }: Props) {
             >
               {/* Page title */}
               <Text style={{ textAlign: 'center', fontSize: 30, fontWeight: '800',
-                color: '#C0152A', letterSpacing: 2.5, textTransform: 'uppercase',
+                color: '#1848a9', letterSpacing: 2.5, textTransform: 'uppercase',
                 fontFamily: SERIF, marginBottom: 4 }}>
                 Get In Touch
               </Text>

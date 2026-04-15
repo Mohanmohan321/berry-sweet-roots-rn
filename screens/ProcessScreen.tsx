@@ -2,6 +2,7 @@ import React, { useRef, useState, useCallback, useEffect } from 'react';
 import {
   View,
   Text,
+  Image,
   ScrollView,
   TouchableOpacity,
   StyleSheet,
@@ -48,9 +49,9 @@ const labResults = [
 ];
 
 const promise = [
-  { emoji: '🌱', stat: 'Organically\nGrown', label: 'No Chemicals',  desc: 'No pesticides, herbicides, or synthetic fertilisers — ever.' },
-  { emoji: '📜', stat: 'ICAR',               label: 'Certified',     desc: 'Farming practices validated by ICAR-recommended guidelines.' },
-  { emoji: '🍃', stat: '24 hr',              label: 'Farm to Table', desc: 'Shortest possible supply chain — no cold-storage middlemen.' },
+  { emoji: '🌱',  image: null,                                        stat: 'Organically\nGrown', label: 'No Chemicals',  desc: 'No pesticides, herbicides, or synthetic fertilisers.' },
+  { emoji: null,  image: require('../assets/ICAR.png') as number,     stat: 'ICAR',               label: 'Certified',     desc: 'Farming practices validated by ICAR-recommended guidelines.' },
+  { emoji: '🍃',  image: null,                                        stat: '24 hr',              label: 'Farm to Table', desc: 'Shortest possible supply chain — no middlemen.' },
 ];
 
 /* ── Back button ─────────────────────────────────────────────────── */
@@ -292,7 +293,7 @@ export default function ProcessScreen({ navigation }: Props) {
 
               <Text style={{ textAlign: 'center', fontSize: 15, color: B.muted,
                 lineHeight: 24, marginBottom: 5, fontFamily: SERIF }}>
-                From Kodaikanal's hills to your door in 24 hrs — pure, fresh, traceable.
+                From Kodaikanal's hills to your door in 24 hrs.
               </Text>
 
               <View style={{ width: '100%', alignItems: 'center' }}>
@@ -442,24 +443,24 @@ export default function ProcessScreen({ navigation }: Props) {
           <View style={[sty.card, { height: SCREEN_H, paddingHorizontal: 24,
             paddingTop: insets.top + 48, paddingBottom: insets.bottom + 32 }]}>
 
-            <Text style={{ textAlign: 'center', marginBottom: 6, fontSize: 15,
+            <Text style={{ textAlign: 'center', marginBottom: 6, fontSize: 22,
               color: '#C0152A', letterSpacing: 5.1, textTransform: 'uppercase',
               fontFamily: SANS, fontWeight: '600' }}>
               Our Promise
             </Text>
-            <Text style={{ textAlign: 'center', fontSize: 24, fontWeight: '700',
+            <Text style={{ textAlign: 'center', fontSize: 20, fontWeight: '700',
               color: B.dark, marginBottom: 10, fontFamily: SERIF }}>
               Our Commitment
             </Text>
 
             {/* Everything below "Our Commitment" is centre-aligned */}
-            <Text style={{ textAlign: 'center', fontSize: 16, color: B.muted,
+            <Text style={{ textAlign: 'center', fontSize: 16, color: '#108333',
               lineHeight: 24, marginBottom: 28, fontFamily: SERIF }}>
-              Every berry reflects a commitment to purity, quality, and your family's health.
+              Every strawberry reflects a commitment to clean and healthy food for our valuable families.
             </Text>
 
             <View style={{ flex: 1, justifyContent: 'center', gap: 16 }}>
-              {promise.map(({ emoji, stat, label, desc }) => (
+              {promise.map(({ emoji, image, stat, label, desc }) => (
                 <View key={label}
                   style={{ flexDirection: 'row', alignItems: 'center', gap: 16,
                     paddingHorizontal: 20, paddingVertical: 18,
@@ -468,7 +469,10 @@ export default function ProcessScreen({ navigation }: Props) {
                     shadowColor: B.primary, shadowOffset: { width: 0, height: 4 },
                     shadowOpacity: 0.12, shadowRadius: 9, elevation: 3 }}>
                   <View style={{ alignItems: 'center', flexShrink: 0, width: 60 }}>
-                    <Text style={{ fontSize: 28, marginBottom: 4 }}>{emoji}</Text>
+                    {image
+                      ? <Image source={image} style={{ width: 40, height: 40, marginBottom: 4 }} resizeMode="contain" />
+                      : <Text style={{ fontSize: 28, marginBottom: 4 }}>{emoji}</Text>
+                    }
                     <Text style={{ fontSize: 16, color: B.dark, fontWeight: '800',
                       textAlign: 'center', fontFamily: SANS }}>{stat}</Text>
                     <Text style={{ fontSize: 10, color: B.muted, textTransform: 'uppercase',
