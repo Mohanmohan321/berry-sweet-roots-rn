@@ -29,7 +29,7 @@ const TOTAL_CARDS = 4;
 
 /* ── Berry colour palette (same as web) ─────────────────────────── */
 const C = {
-  red:   '#D93A4C',
+  red:   '#d32e25',
   green: '#4A7C59',
   dark:  '#1E1A2E',
   muted: '#6B6868',
@@ -58,15 +58,20 @@ const ScrollHint = ({ text, color = 'rgba(100,100,95,0.45)' }: { text?: string; 
 const ImageCarousel = ({ containerWidth }: { containerWidth: number }) => {
   const images = [basketImg, heroImg, jamImg];
   const [active, setActive] = useState(0);
+  const activeRef = useRef(0);
   const scrollRef = useRef<ScrollView>(null);
   const imgW = containerWidth;
 
-  const onSnap = (e: NativeSyntheticEvent<NativeScrollEvent>) => {
+  const onScroll = (e: NativeSyntheticEvent<NativeScrollEvent>) => {
     const idx = Math.round(e.nativeEvent.contentOffset.x / imgW);
-    setActive(idx);
+    if (idx !== activeRef.current) {
+      activeRef.current = idx;
+      setActive(idx);
+    }
   };
 
   const goTo = (i: number) => {
+    activeRef.current = i;
     setActive(i);
     scrollRef.current?.scrollTo({ x: i * imgW, animated: true });
   };
@@ -79,7 +84,10 @@ const ImageCarousel = ({ containerWidth }: { containerWidth: number }) => {
         pagingEnabled
         showsHorizontalScrollIndicator={false}
         decelerationRate="fast"
-        onMomentumScrollEnd={onSnap}
+        scrollEventThrottle={16}
+        onScroll={onScroll}
+        onMomentumScrollEnd={onScroll}
+        onScrollEndDrag={onScroll}
         style={{ borderRadius: 16, height: 260 }}
         contentContainerStyle={{ width: imgW * images.length }}
       >
@@ -167,23 +175,23 @@ export default function HomeScreen({ navigation }: Props) {
 
           {/* ══ CARD 2 ─ Our Strawberries ══════════════════════════ */}
           <View style={[sty.card, { height: SCREEN_H }]}>
-            <View style={{ flex: 1, paddingHorizontal: 24, paddingTop: insets.top + 44, paddingBottom: 24, overflow: 'hidden' }}>
+            <View style={{ flex: 1, paddingHorizontal: 24, paddingTop: insets.top + 12, paddingBottom: 24, justifyContent: 'center' }}>
 
               {/* Eyebrow */}
-              <Text style={{ textAlign: 'center', marginBottom: 8, fontSize: 14,
-                color: C.amber, letterSpacing: 3.1, textTransform: 'uppercase',
+              <Text style={{ textAlign: 'center', marginBottom: 6, fontSize: 22,
+                color: '#C0152A', letterSpacing: 3.1, textTransform: 'uppercase',
                 fontWeight: '700', fontFamily: SANS }}>
                 Strawberries
               </Text>
 
               {/* Heading */}
-              <Text style={{ textAlign: 'center', marginBottom: 18, fontSize: 28,
-                fontWeight: '700', color: C.dark, fontFamily: SERIF }}>
+              <Text style={{ textAlign: 'center', marginBottom: 12, fontSize: 20,
+                fontWeight: '700', color: '#4b5a79', fontFamily: SERIF }}>
                 Our Story
               </Text>
 
               {/* Pull quote */}
-              <View style={{ marginBottom: 18, paddingVertical: 14, paddingRight: 14,
+              <View style={{ marginBottom: 12, paddingVertical: 10, paddingRight: 14,
                 paddingLeft: 14, borderLeftWidth: 3, borderLeftColor: C.amber,
                 backgroundColor: 'rgba(193,140,93,0.05)', borderRadius: 10,
                 borderTopRightRadius: 10, borderBottomRightRadius: 10 }}>
@@ -195,13 +203,13 @@ export default function HomeScreen({ navigation }: Props) {
               </View>
 
               {/* Body */}
-              <Text style={{ fontSize: 14, color: C.muted, lineHeight: 23,
-                marginBottom: 14, fontFamily: SERIF }}>
+              <Text style={{ fontSize: 14, color: C.muted, lineHeight: 22,
+                marginBottom: 8, fontFamily: SERIF }}>
                 We work with local farmers — no shortcuts, no chemicals. Grown organically
                 in Kodaikanal's cool hills, just as nature intended.
               </Text>
-              <Text style={{ fontSize: 14, color: C.muted, lineHeight: 23,
-                marginBottom: 18, fontFamily: SERIF }}>
+              <Text style={{ fontSize: 14, color: C.muted, lineHeight: 22,
+                marginBottom: 10, fontFamily: SERIF }}>
                 We chose the{' '}
                 <Text style={{ color: C.dark, fontWeight: '700' }}>Camarosa variety</Text>
                 {' '}— handpicked at peak ripeness and lab-tested by{' '}
@@ -216,7 +224,7 @@ export default function HomeScreen({ navigation }: Props) {
               <TouchableOpacity
                 onPress={() => navigation.navigate('Process')}
                 style={{ flexDirection: 'row', alignItems: 'center', justifyContent: 'center',
-                  gap: 8, width: '100%', marginTop: 22, backgroundColor: C.red,
+                  gap: 8, width: '100%', marginTop: 12, backgroundColor: C.red,
                   borderRadius: 14, paddingVertical: 14,
                   shadowColor: C.red, shadowOffset: { width: 0, height: 6 },
                   shadowOpacity: 0.38, shadowRadius: 10, elevation: 6 }}
@@ -224,7 +232,7 @@ export default function HomeScreen({ navigation }: Props) {
               >
                 <Text style={{ color: 'white', fontSize: 16, fontWeight: '700',
                   letterSpacing: 0.6, fontFamily: SANS }}>
-                  Our Process
+                  OUR PROCESS
                 </Text>
                 <Text style={{ color: 'white', fontSize: 17 }}>→</Text>
               </TouchableOpacity>
@@ -236,8 +244,9 @@ export default function HomeScreen({ navigation }: Props) {
           <View style={[sty.card, { height: SCREEN_H, alignItems: 'center',
             paddingHorizontal: 32 }]}>
 
-            {/* Coming Soon badge — fixed at top */}
-            <View style={{ position: 'absolute', top: 72, alignItems: 'center', zIndex: 10 }}>
+            {/* All content in one centred block */}
+            <View style={{ flex: 1, justifyContent: 'center', alignItems: 'center', gap: 10,
+              paddingTop: insets.top }}>
               <View style={{ backgroundColor: C.red, borderRadius: 99,
                 paddingHorizontal: 24, paddingVertical: 10,
                 shadowColor: C.red, shadowOffset: { width: 0, height: 4 },
@@ -247,21 +256,17 @@ export default function HomeScreen({ navigation }: Props) {
                   Coming Soon
                 </Text>
               </View>
-            </View>
-
-            {/* Image + content grouped in centre */}
-            <View style={{ flex: 1, justifyContent: 'center', alignItems: 'center', gap: 10 }}>
               <Image
                 source={strawberryImg}
-                style={{ width: colW * 0.75, height: colW * 0.60 }}
+                style={{ width: colW * 0.70, height: colW * 0.55 }}
                 resizeMode="contain"
               />
-              <Text style={{ textAlign: 'center', fontSize: 58, fontWeight: '900',
-                color: C.dark, lineHeight: 66, fontFamily: SERIF }}>
+              <Text style={{ textAlign: 'center', fontSize: 48, fontWeight: '900',
+                color: C.dark, lineHeight: 56, fontFamily: SERIF }}>
                 Strawberry{'\n'}Preserve
               </Text>
-              <Text style={{ textAlign: 'center', maxWidth: 300, fontSize: 18,
-                color: C.muted, lineHeight: 30, fontFamily: SERIF }}>
+              <Text style={{ textAlign: 'center', maxWidth: 300, fontSize: 16,
+                color: C.muted, lineHeight: 26, fontFamily: SERIF }}>
                 Small-batch, handmade preserves from our organic harvest.
                 No preservatives. Pure fruit.
               </Text>
@@ -275,11 +280,12 @@ export default function HomeScreen({ navigation }: Props) {
             <ScrollView
               showsVerticalScrollIndicator={false}
               contentContainerStyle={{ paddingHorizontal: 22,
-                paddingTop: insets.top + 32, paddingBottom: insets.bottom + 40 }}
+                paddingTop: insets.top , paddingBottom: insets.bottom ,
+                flexGrow: 1, justifyContent: 'center' }}
             >
               {/* Page title */}
               <Text style={{ textAlign: 'center', fontSize: 30, fontWeight: '800',
-                color: C.dark, letterSpacing: 2.5, textTransform: 'uppercase',
+                color: '#C0152A', letterSpacing: 2.5, textTransform: 'uppercase',
                 fontFamily: SERIF, marginBottom: 4 }}>
                 Get In Touch
               </Text>
@@ -322,7 +328,7 @@ export default function HomeScreen({ navigation }: Props) {
               ))}
 
               {/* Logo at bottom */}
-              <View style={{ alignItems: 'center', marginTop: 32, marginBottom: 16 }}>
+              <View style={{ alignItems: 'center' }}>
                 <Image source={logo} style={{ width: colW - 16, height: 280 }} resizeMode="contain" />
               </View>
 

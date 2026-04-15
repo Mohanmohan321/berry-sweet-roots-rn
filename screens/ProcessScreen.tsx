@@ -35,7 +35,7 @@ const SANS  = Platform.OS === 'ios' ? 'System'  : 'sans-serif';
 /* ── Data ────────────────────────────────────────────────────────── */
 const steps = [
   { emoji: '🌱', accent: B.primary, label: 'Organically Grown',  desc: "Camarosa variety cultivated in Kodaikanal's cool climate with zero synthetic inputs." },
-  { emoji: '✋', accent: B.amber,   label: 'Hand-Harvested',      desc: 'Each berry is picked by hand at peak ripeness — never machine-harvested.' },
+  { emoji: '✋', accent: B.amber,   label: 'Hand-Harvested',      desc: 'Each berry is hand picked — never machine-harvested.' },
   { emoji: '📦', accent: B.primary, label: 'Inspected & Sorted',  desc: 'Every batch is visually inspected and sorted for size, colour, and quality.' },
   { emoji: '🚚', accent: B.amber,   label: 'Delivered in 24 hrs', desc: 'Packed in food-grade boxes and dispatched the same day — farm fresh at your door.' },
 ];
@@ -269,50 +269,51 @@ export default function ProcessScreen({ navigation }: Props) {
         >
           {/* ══ CARD 1 ─ From Farm to Table ════════════════════════ */}
           <View style={[sty.card, { height: SCREEN_H }]}>
-            <View style={{ flex: 1, paddingHorizontal: 24,
-              paddingTop: insets.top + 48, paddingBottom: 40 }}>
-
-              <View style={{ marginBottom: 20, alignItems: 'flex-start' }}>
+            <ScrollView
+              showsVerticalScrollIndicator={false}
+              contentContainerStyle={{ paddingHorizontal: 20,
+                paddingTop: insets.top + 16, paddingBottom: insets.bottom,
+                alignItems: 'center' }}
+            >
+              {/* Back button */}
+              <View style={{ width: '100%', alignItems: 'flex-start', marginBottom: 10 }}>
                 <BackBtn onPress={goBackToStory} />
               </View>
 
-              <Text style={{ textAlign: 'center', marginBottom: 6, fontSize: 13,
-                color: B.amber, letterSpacing: 5.1, textTransform: 'uppercase',
+              <Text style={{ textAlign: 'center', marginBottom: 4, fontSize: 18,
+                color: '#C0152A', letterSpacing: 5.1, textTransform: 'uppercase',
                 fontFamily: SANS, fontWeight: '600' }}>
                 Behind the scenes
               </Text>
-              <Text style={{ textAlign: 'center', marginBottom: 16, fontSize: 36,
-                fontWeight: '800', color: B.dark, lineHeight: 44, fontFamily: SERIF }}>
-                From Farm{'\n'}to Table
+              <Text style={{ textAlign: 'center', marginBottom: 4, fontSize: 24,
+                fontWeight: '800', color: B.dark, lineHeight: 34, fontFamily: SERIF }}>
+                From Farm to Table
               </Text>
 
               <Text style={{ textAlign: 'center', fontSize: 15, color: B.muted,
-                lineHeight: 24, marginBottom: 14, fontFamily: SERIF }}>
+                lineHeight: 24, marginBottom: 5, fontFamily: SERIF }}>
                 From Kodaikanal's hills to your door in 24 hrs — pure, fresh, traceable.
               </Text>
 
-              <View style={{ flex: 1, justifyContent: 'center', gap: 20 }}>
+              <View style={{ width: '100%', alignItems: 'center' }}>
                 {steps.map(({ emoji, accent, label, desc }, i) => (
-                  <View key={label} style={{ flexDirection: 'row', gap: 16, alignItems: 'flex-start' }}>
-                    <View style={{ alignItems: 'center', flexShrink: 0 }}>
-                      <View style={{ width: 50, height: 50, borderRadius: 25,
-                        backgroundColor: accent, justifyContent: 'center', alignItems: 'center' }}>
-                        <Text style={{ fontSize: 22 }}>{emoji}</Text>
-                      </View>
-                      {i < steps.length - 1 && (
-                        <View style={{ width: 1, height: 20, backgroundColor: B.border, marginTop: 4 }} />
-                      )}
+                  <View key={label} style={{ alignItems: 'center', width: '100%' }}>
+                    <View style={{ width: 56, height: 56, borderRadius: 28,
+                      backgroundColor: accent, justifyContent: 'center', alignItems: 'center' }}>
+                      <Text style={{ fontSize: 24 }}>{emoji}</Text>
                     </View>
-                    <View style={{ paddingTop: 6, flex: 1 }}>
-                      <Text style={{ fontSize: 17, fontWeight: '700', color: B.dark,
-                        marginBottom: 4, fontFamily: SERIF }}>{label}</Text>
-                      <Text style={{ fontSize: 15, color: B.muted, lineHeight: 22,
-                        fontFamily: SERIF }}>{desc}</Text>
-                    </View>
+                    <Text style={{ fontSize: 17, fontWeight: '700', color: B.dark,
+                      marginTop: 10, marginBottom: 0, textAlign: 'center', fontFamily: SERIF }}>
+                      {label}
+                    </Text>
+                    <Text style={{ fontSize: 14, color: B.muted, lineHeight: 22,
+                      textAlign: 'center', fontFamily: SERIF, maxWidth: 300 }}>
+                      {desc}
+                    </Text>
                   </View>
                 ))}
               </View>
-            </View>
+            </ScrollView>
           </View>
 
           {/* ══ CARD 2 ─ Lab Report Summary ════════════════════════ */}
@@ -351,16 +352,13 @@ export default function ProcessScreen({ navigation }: Props) {
                       backgroundColor: '#FFFFFF', borderWidth: 1.5, borderColor: B.border,
                       borderRadius: 18 }}>
                     <View style={{ flex: 1 }}>
-                      <Text style={{ fontSize: 12, color: B.muted, letterSpacing: 1.9,
+                      <Text style={{ fontSize: 12, color: B.muted,textAlign:'center' ,letterSpacing: 1.9,
                         textTransform: 'uppercase', marginBottom: 4, fontFamily: SANS }}>
                         {label}
                       </Text>
-                      <Text style={{ fontSize: 18, fontWeight: '700', color: B.dark,
-                        fontFamily: SERIF }}>{result}</Text>
-                      <Text style={{ fontSize: 13, color: B.muted,
-                        fontFamily: SANS, marginTop: 2 }}>{note}</Text>
+                      <Text style={{ fontSize: 16, textAlign:'center', fontWeight: '700', color: B.dark,
+                        fontFamily: SERIF }}>{result}{' '}-{' '}{note}</Text>
                     </View>
-                    <Text style={{ fontSize: 20, color: B.primary, marginLeft: 12 }}>✓</Text>
                   </View>
                 ))}
               </View>
@@ -388,7 +386,7 @@ export default function ProcessScreen({ navigation }: Props) {
               paddingTop: insets.top + 44, paddingBottom: 48 }}>
 
               <View style={{ alignItems: 'center', marginBottom: 16, gap: 4 }}>
-                <Text style={{ fontSize: 13, color: B.amber, fontWeight: '700',
+                <Text style={{ fontSize: 13, color: '#C0152A', fontWeight: '700',
                   letterSpacing: 3.5, textTransform: 'uppercase', fontFamily: SANS }}>
                   Page 1 of 2
                 </Text>
@@ -417,7 +415,7 @@ export default function ProcessScreen({ navigation }: Props) {
               paddingTop: insets.top + 44, paddingBottom: 48 }}>
 
               <View style={{ alignItems: 'center', marginBottom: 16, gap: 4 }}>
-                <Text style={{ fontSize: 13, color: B.amber, fontWeight: '700',
+                <Text style={{ fontSize: 13, color: '#C0152A', fontWeight: '700',
                   letterSpacing: 3.5, textTransform: 'uppercase', fontFamily: SANS }}>
                   Page 2 of 2
                 </Text>
@@ -444,12 +442,12 @@ export default function ProcessScreen({ navigation }: Props) {
           <View style={[sty.card, { height: SCREEN_H, paddingHorizontal: 24,
             paddingTop: insets.top + 48, paddingBottom: insets.bottom + 32 }]}>
 
-            <Text style={{ textAlign: 'center', marginBottom: 6, fontSize: 13,
-              color: B.amber, letterSpacing: 5.1, textTransform: 'uppercase',
+            <Text style={{ textAlign: 'center', marginBottom: 6, fontSize: 15,
+              color: '#C0152A', letterSpacing: 5.1, textTransform: 'uppercase',
               fontFamily: SANS, fontWeight: '600' }}>
               Our Promise
             </Text>
-            <Text style={{ textAlign: 'center', fontSize: 26, fontWeight: '700',
+            <Text style={{ textAlign: 'center', fontSize: 24, fontWeight: '700',
               color: B.dark, marginBottom: 10, fontFamily: SERIF }}>
               Our Commitment
             </Text>
@@ -489,13 +487,13 @@ export default function ProcessScreen({ navigation }: Props) {
               onPress={goBackToStory}
               activeOpacity={0.88}
               style={{ flexDirection: 'row', alignItems: 'center', justifyContent: 'center',
-                gap: 8, width: '100%', marginTop: 24, backgroundColor: B.primary,
+                gap: 8, width: '100%', marginTop: 24, backgroundColor: '#4A7C59',
                 borderRadius: 14, paddingVertical: 16,
                 shadowColor: B.primary, shadowOffset: { width: 0, height: 6 },
                 shadowOpacity: 0.38, shadowRadius: 10, elevation: 6 }}
             >
               <Text style={{ color: 'white', fontSize: 18 }}>←</Text>
-              <Text style={{ color: 'white', fontSize: 16, fontWeight: '700',
+              <Text style={{ color: 'white', fontSize: 16, textTransform:'uppercase',fontWeight: '700',
                 letterSpacing: 0.6, fontFamily: SANS }}>
                 Back to Strawberrys
               </Text>
