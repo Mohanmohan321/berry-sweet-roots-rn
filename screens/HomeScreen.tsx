@@ -291,10 +291,10 @@ export default function HomeScreen({ navigation }: Props) {
 
               {/* Social cards */}
               {([
-                { href: 'https://wa.me/',         icon: whatsappIcon,  label: 'WhatsApp',
+                { href: 'https://wa.me/919176540077',         icon: whatsappIcon,  label: 'WhatsApp',
                   sub: 'Chat with us to place an order', shadowColor: 'rgba(37,211,102,0.22)',
                   accent: '#25D366' },
-                { href: 'https://instagram.com/', icon: instagramIcon, label: 'Instagram',
+                { href: 'https://www.instagram.com/theberrypatch.organic?igsh=MTNocDgzdzF5ZWJnaA==', icon: instagramIcon, label: 'Instagram',
                   sub: 'Follow our farm journey & updates', shadowColor: 'rgba(193,50,50,0.18)',
                   accent: C.red },
               ] as const).map(({ href, icon, label, sub, shadowColor, accent }) => (
