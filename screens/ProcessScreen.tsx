@@ -36,16 +36,16 @@ const SANS  = Platform.OS === 'ios' ? 'System'  : 'sans-serif';
 /* ── Data ────────────────────────────────────────────────────────── */
 const steps = [
   { emoji: '🌱', accent: B.primary, label: 'Organically Grown',  desc: "Camarosa variety cultivated in Kodaikanal's cool climate with zero synthetic inputs." },
-  { emoji: '✋', accent: B.amber,   label: 'Hand-Harvested',      desc: 'Each berry is hand picked — never machine-harvested.' },
+  { emoji: '✋', accent: '#739657', label: 'Hand-Harvested',      desc: 'Each berry is hand picked — never machine-harvested.' },
   { emoji: '📦', accent: B.primary, label: 'Inspected & Sorted',  desc: 'Every batch is visually inspected and sorted for size, colour, and quality.' },
-  { emoji: '🚚', accent: B.amber,   label: 'Delivered in 24 hrs', desc: 'Packed in food-grade boxes and dispatched the same day — farm fresh at your door.' },
+  { emoji: '🚚', accent: '#739657', label: 'Delivered in 24 hrs', desc: 'Packed in food-grade boxes and dispatched the same day — farm fresh at your door.' },
 ];
 
 const labResults = [
-  { label: 'Pesticide Residue', result: '< LOQ',          note: 'Below limit of quantification — effectively zero' },
-  { label: 'LCMS-MS Panel',     result: 'All Clear',       note: '70+ compounds tested — none detected' },
-  { label: 'GCMS-MS Panel',     result: 'All Clear',       note: '60+ compounds tested — none detected' },
-  { label: 'Test Method',       result: 'FSRL-PR-SOP-09',  note: 'ICAR-IIHR accredited protocol' },
+  { label: 'Pesticide Residue', note: 'Below limit of quantification', highlight: '"Effectively zero"' },
+  { label: 'LCMS-MS Panel',     note: '70plus Compounds Tested',       highlight: 'None Detected - All Clear' },
+  { label: 'GCMS-MS Panel',     note: '60plus Compounds Tested',       highlight: 'None Detected - All Clear' },
+  { label: 'Test Method',       note: 'ICAR-IIHR accredited protocol', highlight: null },
 ];
 
 const promise = [
@@ -61,10 +61,10 @@ const BackBtn = ({ onPress }: { onPress: () => void }) => (
     activeOpacity={0.75}
     style={{ flexDirection: 'row', alignItems: 'center', gap: 6,
       backgroundColor: '#FFFFFF', borderWidth: 1.5, borderColor: B.border,
-      borderRadius: 99, paddingVertical: 8, paddingHorizontal: 18, alignSelf: 'flex-start' }}
+      borderRadius: 99, paddingVertical: 4, paddingHorizontal: 18, alignSelf: 'flex-start' }}
   >
-    <Text style={{ fontSize: 17 }}>←</Text>
-    <Text style={{ fontSize: 14, color: B.primary, fontWeight: '700', fontFamily: SANS }}>
+    <Text style={{ fontSize: 15 }}>←</Text>
+    <Text style={{ fontSize: 13, color: B.primary, fontWeight: '700', fontFamily: SANS }}>
       Back
     </Text>
   </TouchableOpacity>
@@ -277,26 +277,26 @@ export default function ProcessScreen({ navigation }: Props) {
                 alignItems: 'center' }}
             >
               {/* Back button */}
-              <View style={{ width: '100%', alignItems: 'flex-start', marginBottom: 10 }}>
+              <View style={{ width: '100%', alignItems: 'flex-start', marginBottom: 28 }}>
                 <BackBtn onPress={goBackToStory} />
               </View>
 
-              <Text style={{ textAlign: 'center', marginBottom: 4, fontSize: 18,
-                color: '#C0152A', letterSpacing: 5.1, textTransform: 'uppercase',
+              <Text style={{ textAlign: 'center', marginBottom: 14, fontSize: 18,
+                color: '#C0152A', letterSpacing: 5, textTransform: 'uppercase',
                 fontFamily: SANS, fontWeight: '600' }}>
                 Behind the scenes
               </Text>
-              <Text style={{ textAlign: 'center', marginBottom: 4, fontSize: 24,
+              <Text style={{ textAlign: 'center', marginBottom: 14, fontSize: 20,
                 fontWeight: '800', color: B.dark, lineHeight: 34, fontFamily: SERIF }}>
                 From Farm to Table
               </Text>
 
               <View style={{ width: '100%', alignItems: 'center' }}>
                 {steps.map(({ emoji, accent, label, desc }, i) => (
-                  <View key={label} style={{ alignItems: 'center', width: '100%' }}>
-                    <View style={{ width: 56, height: 56, borderRadius: 28,
+                  <View key={label} style={{ alignItems: 'center', width: '100%',padding:5 }}>
+                    <View style={{ width: 44, height: 44, borderRadius: 22,
                       backgroundColor: accent, justifyContent: 'center', alignItems: 'center' }}>
-                      <Text style={{ fontSize: 24 }}>{emoji}</Text>
+                      <Text style={{ fontSize: 20 }}>{emoji}</Text>
                     </View>
                     <Text style={{ fontSize: 17, fontWeight: '700', color: B.dark,
                       marginTop: 10, marginBottom: 0, textAlign: 'center', fontFamily: SERIF }}>
@@ -329,31 +329,40 @@ export default function ProcessScreen({ navigation }: Props) {
                 </Text>
               </View>
 
-              <Text style={{ textAlign: 'center', fontSize: 26, fontWeight: '700',
+              <Text style={{ textAlign: 'center', fontSize: 24, fontWeight: '700',
                 color: B.dark, marginBottom: 6, fontFamily: SERIF }}>Lab Report</Text>
               <Text style={{ textAlign: 'center', fontSize: 14, color: '#555550',
                 fontWeight: '600', marginBottom: 4, fontFamily: SANS }}>
-                Report No: FSRL2026-40 · 13 Apr 2026
+                Report No: <Text style={{ textDecorationLine: 'underline' }}>FSRL2026 - 40</Text> · 13 Apr 2026
               </Text>
               <Text style={{ textAlign: 'center', fontSize: 14, color: B.muted,
                 marginBottom: 24, fontFamily: SANS }}>
-                Sample: Strawberry (1 kg) · Analysed 08–11 Apr 2026
+                Sample: Strawberry (1 kg) · Analysed 08 - 11 Apr 2026
               </Text>
 
               <View style={{ flex: 1, justifyContent: 'center', gap: 12 }}>
-                {labResults.map(({ label, result, note }) => (
+                {labResults.map(({ label, note, highlight }) => (
                   <View key={label}
                     style={{ flexDirection: 'row', alignItems: 'center',
-                      justifyContent: 'space-between', paddingHorizontal: 16, paddingVertical: 14,
+                      justifyContent: 'space-between', paddingHorizontal: 16, paddingVertical: 10,
                       backgroundColor: '#FFFFFF', borderWidth: 1.5, borderColor: B.border,
                       borderRadius: 18 }}>
                     <View style={{ flex: 1 }}>
-                      <Text style={{ fontSize: 12, color: B.muted,textAlign:'center' ,letterSpacing: 1.9,
-                        textTransform: 'uppercase', marginBottom: 4, fontFamily: SANS }}>
-                        {label}
-                      </Text>
-                      <Text style={{ fontSize: 16, textAlign:'center', fontWeight: '700', color: B.dark,
-                        fontFamily: SERIF }}>{result}{' '}-{' '}{note}</Text>
+                      <View style={{ alignSelf: 'center', borderBottomWidth: 2, borderBottomColor: B.dark, marginBottom: 6 }}>
+                        <Text style={{ fontSize: 15, textAlign:'center', letterSpacing: 1.9, fontWeight:'600', color: B.dark,
+                          textTransform: 'uppercase', fontFamily: SANS }}>
+                          {label}
+                        </Text>
+                      </View>
+                      <Text style={{ fontSize: 15, textAlign:'center', fontWeight: '400', color:B.dark,
+                        fontFamily: SERIF }}>{note}</Text>
+                      {highlight ? (
+                        <View style={{ alignSelf: 'center', backgroundColor: '#739657', borderRadius: 4,
+                          paddingHorizontal: 6, paddingVertical: 2, marginTop: 4 }}>
+                          <Text style={{ fontSize: 12, textAlign:'center', fontWeight: '700', color: '#FFFFFF',
+                            fontFamily: SANS, textTransform: 'uppercase', letterSpacing: 1 }}>{highlight}</Text>
+                        </View>
+                      ) : null}
                     </View>
                   </View>
                 ))}

@@ -23,7 +23,7 @@ const heroImg2   = require('../assets/real-farm2.jpg');
 const berriesImg = require('../assets/real-berries.jpg');
 const whatsappIcon = require('../assets/whatsapp-icon.jpg');
 const instagramIcon = require('../assets/instagram-icon.jpg');
-const strawberryImg = require('../assets/strawberry-jam.jpg');
+
 
 const TOTAL_CARDS = 3;
 
@@ -110,7 +110,7 @@ const ImageCarousel = ({ containerWidth }: { containerWidth: number }) => {
               width: active === i ? 20 : 8,
               height: 8,
               borderRadius: 4,
-              backgroundColor: active === i ? C.green : 'rgba(18, 216, 15, 0.25)',
+              backgroundColor: active === i ? C.green : 'rgba(0, 105, 9, 0.25)',
             }}
           />
         ))}
@@ -251,16 +251,11 @@ export default function HomeScreen({ navigation }: Props) {
                 paddingHorizontal: 24, paddingVertical: 10,
                 shadowColor: C.red, shadowOffset: { width: 0, height: 4 },
                 shadowOpacity: 0.45, shadowRadius: 8, elevation: 5 }}>
-                <Text style={{ fontSize: 17, color: '#fff', letterSpacing: 3.5,
+                <Text style={{ fontSize: 24, color: '#fff', letterSpacing: 3.5,
                   textTransform: 'uppercase', fontWeight: '800', fontFamily: SANS }}>
                   Coming Soon
                 </Text>
               </View>
-              <Image
-                source={strawberryImg}
-                style={{ width: colW * 0.70, height: colW * 0.55 }}
-                resizeMode="contain"
-              />
               <Text style={{ textAlign: 'center', fontSize: 48, fontWeight: '900',
                 color: C.dark, lineHeight: 56, fontFamily: SERIF }}>
                 Strawberry{'\n'}Preserve
