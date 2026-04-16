@@ -20,11 +20,8 @@ import { RootStackParamList } from '../App';
 const logo = require('../assets/logo.png');
 const heroImg    = require('../assets/real-farm.jpg');
 const heroImg2   = require('../assets/real-farm2.jpg');
-const heroImg3   = require('../assets/real-farm3.jpg');
-const basketImg  = require('../assets/real-basket.jpg');
-const boxImg     = require('../assets/real-box.jpg');
 const berriesImg = require('../assets/real-berries.jpg');
-const jamImg     = require('../assets/real-bowl.jpg');
+const basketImg  = require('../assets/real-basket.jpg');
 const whatsappIcon = require('../assets/whatsapp-icon.jpg');
 const instagramIcon = require('../assets/instagram-icon.jpg');
 const strawberryImg = require('../assets/strawberry.png');
@@ -34,7 +31,7 @@ const TOTAL_CARDS = 4;
 /* ── Berry colour palette (same as web) ─────────────────────────── */
 const C = {
   red:   '#d32e25',
-  green: '#61a519',
+  green: '#739657',
   dark:  '#1E1A2E',
   muted: '#6B6868',
   amber: '#C18C5D',
@@ -60,7 +57,7 @@ const ScrollHint = ({ text, color = 'rgba(100,100,95,0.45)' }: { text?: string; 
 
 /* ── Image carousel ──────────────────────────────────────────────── */
 const ImageCarousel = ({ containerWidth }: { containerWidth: number }) => {
-  const images = [heroImg, heroImg2, heroImg3, basketImg, boxImg, berriesImg, jamImg];
+  const images = [heroImg, heroImg2, berriesImg, basketImg];
   const [active, setActive] = useState(0);
   const activeRef = useRef(0);
   const scrollRef = useRef<ScrollView>(null);

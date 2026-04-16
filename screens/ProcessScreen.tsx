@@ -486,7 +486,7 @@ export default function ProcessScreen({ navigation }: Props) {
               onPress={goBackToStory}
               activeOpacity={0.88}
               style={{ flexDirection: 'row', alignItems: 'center', justifyContent: 'center',
-                gap: 8, width: '100%', marginTop: 24, backgroundColor: '#4A7C59',
+                gap: 8, width: '100%', marginTop: 24, backgroundColor: '#739657',
                 borderRadius: 14, paddingVertical: 16,
                 shadowColor: B.primary, shadowOffset: { width: 0, height: 6 },
                 shadowOpacity: 0.38, shadowRadius: 10, elevation: 6 }}
