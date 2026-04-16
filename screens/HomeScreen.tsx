@@ -21,12 +21,11 @@ const logo = require('../assets/logo.png');
 const heroImg    = require('../assets/real-farm.jpg');
 const heroImg2   = require('../assets/real-farm2.jpg');
 const berriesImg = require('../assets/real-berries.jpg');
-const basketImg  = require('../assets/real-basket.jpg');
 const whatsappIcon = require('../assets/whatsapp-icon.jpg');
 const instagramIcon = require('../assets/instagram-icon.jpg');
-const strawberryImg = require('../assets/strawberry.png');
+const strawberryImg = require('../assets/strawberry-jam.jpg');
 
-const TOTAL_CARDS = 4;
+const TOTAL_CARDS = 3;
 
 /* ── Berry colour palette (same as web) ─────────────────────────── */
 const C = {
@@ -57,7 +56,7 @@ const ScrollHint = ({ text, color = 'rgba(100,100,95,0.45)' }: { text?: string; 
 
 /* ── Image carousel ──────────────────────────────────────────────── */
 const ImageCarousel = ({ containerWidth }: { containerWidth: number }) => {
-  const images = [heroImg, heroImg2, berriesImg, basketImg];
+  const images = [heroImg, heroImg2, berriesImg];
   const [active, setActive] = useState(0);
   const activeRef = useRef(0);
   const scrollRef = useRef<ScrollView>(null);
