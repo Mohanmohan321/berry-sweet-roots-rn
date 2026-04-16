@@ -114,7 +114,7 @@ const ImageCarousel = ({ containerWidth }: { containerWidth: number }) => {
               width: active === i ? 20 : 8,
               height: 8,
               borderRadius: 4,
-              backgroundColor: active === i ? C.red : 'rgba(217,58,76,0.25)',
+              backgroundColor: active === i ? C.green : 'rgba(18, 216, 15, 0.25)',
             }}
           />
         ))}
@@ -190,7 +190,7 @@ export default function HomeScreen({ navigation }: Props) {
 
               {/* Heading */}
               <Text style={{ textAlign: 'center', marginBottom: 12, fontSize: 20,
-                fontWeight: '700', color: '#4b5a79', fontFamily: SERIF }}>
+                fontWeight: '700', color: '#3a4f73', fontFamily: SERIF }}>
                 Our Story
               </Text>
 
@@ -289,7 +289,7 @@ export default function HomeScreen({ navigation }: Props) {
             >
               {/* Page title */}
               <Text style={{ textAlign: 'center', fontSize: 30, fontWeight: '800',
-                color: '#1848a9', letterSpacing: 2.5, textTransform: 'uppercase',
+                color: '#3a4f73', letterSpacing: 2.5, textTransform: 'uppercase',
                 fontFamily: SERIF, marginBottom: 4 }}>
                 Get In Touch
               </Text>
