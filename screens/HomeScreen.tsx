@@ -34,7 +34,7 @@ const TOTAL_CARDS = 4;
 /* ── Berry colour palette (same as web) ─────────────────────────── */
 const C = {
   red:   '#d32e25',
-  green: '#4A7C59',
+  green: '#61a519',
   dark:  '#1E1A2E',
   muted: '#6B6868',
   amber: '#C18C5D',
